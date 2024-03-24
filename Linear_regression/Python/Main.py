@@ -5,4 +5,4 @@ file_name = "data.txt"
 Reg.parse_data(file_name)
 print(Reg.Labels)
 print(Reg.Predictor)
-Reg.regression_coefficient()
+Reg.regression_coefficient_least_square()

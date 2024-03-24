@@ -7,6 +7,10 @@ class regression:
         Predictor = []
         covariance = 0 
         variance = 0 
+        intercept = 0 
+        coefficient = 0 
+        
+    
         
         
     def checknumber(self,lignes,indice):
@@ -35,21 +39,20 @@ class regression:
         self.Labels = self.checknumber(lines,1)
         self.Predictor = self.checknumber(lines,3)
         
-    def regression_coefficient(self):
+    def regression_coefficient_least_square(self):
         number_value = len(self.Labels)
         sum_y = sum(y for y in self.Labels)
         sum_x = sum(x for x in self.Predictor)
         mean_x = sum_x/number_value
         mean_y = sum_y/number_value
-        sum_x_square = sum(x * x for x in self.Predictor)
-        sum_xy = sum(x * y for x in self.Predictor for y in self.Labels)
-        print("sum_y", sum_y)
-        print("sum_x", sum_x)
-        print("sum_x_square", sum_x_square)
-        print("sum_xy", sum_xy)
-        print("mean_x:", mean_x)
-        print("mean_y", mean_y)
-        self.covariance = (sum_xy - sum_x * sum_y) / 
-        s
-
+        sum_x_square = sum((x - mean_x)**2 for x in self.Predictor)
+        self.covariance = sum((self.Predictor[k] - mean_x)* (self.Labels[k] - mean_y) for k in range(len(self.Predictor)))
+        self.coefficient = self.covariance/sum_x_square 
+        self.intercept = mean_y -  self.coefficient*mean_x
         
+        
+        
+    def regression_coefficient_gradient_descent(self):
+        a = 10 
+        
+       
